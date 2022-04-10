@@ -53,13 +53,15 @@ class RangkingController extends Controller
             $dosen->c4 = $dosen->c4 * $bobot[3];
             $dosen->c5 = $dosen->c5 * $bobot[4];
             $dosen->jumlah = $dosen->c1 + $dosen->c2+$dosen->c3+$dosen->c4+ $dosen->c5 * $bobot[4];
-            echo($dosen->nama);
-            echo('<br>');
-            echo($dosen->jumlah);
-            echo('<br>');
+            // echo($dosen->nama);
+            // echo('<br>');
+            // echo($dosen->jumlah);
+            // echo('<br>');
             array_push($ternomalisasiXbobot,$dosen);
         }
 
+
+        array_multisort($ternomalisasiXbobot, SORT_ASC);
 
 
         $data['dosens'] = $ternomalisasiXbobot;

@@ -1,20 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Data Dosen')
-@section('content-title', 'Data Dosen')
+@section('title', 'Data Rangking')
+@section('content-title', 'Data Rangking')
 @section('content-subtitle', '-')
 @section('content')
     <div class="box mt-4">
         <div class="box-header">
-            <h3 class="box-title">Tabel </h3>
-            <div class="pull-right mb-2">
-                <a class="btn btn-success" href="{{ route('dosen.create') }}"> Tambah Dosen</a>
-            </div>
         </div>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
 
         <div class="box-body">
             <table id="tabel" class="table table-bordered table-hover">
@@ -27,6 +18,7 @@
                         <th>C3</th>
                         <th>C4</th>
                         <th>C5</th>
+                        <th>Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,14 +31,7 @@
                             <td>{{ $dosen->c3 }}</td>
                             <td>{{ $dosen->c4 }}</td>
                             <td>{{ $dosen->c5 }}</td>
-                            <td>
-                                <form action="{{ route('dosen.destroy', $dosen->id) }}" method="Post">
-                                    <a class="btn btn-primary" href="{{ route('dosen.edit', $dosen->id) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
+                            <td>{{ $dosen->jumlah }}</td>
                         </tr>
                     @endforeach
                 </tbody>
