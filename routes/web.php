@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\PerhitunganController;
+use App\Http\Controllers\RangkingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+Route::resource('dosen', DosenController::class);
+Route::resource('/perhitungan', PerhitunganController::class);
+Route::resource('/rangking', RangkingController::class);
