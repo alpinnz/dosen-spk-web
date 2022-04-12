@@ -14,12 +14,30 @@ class PerhitunganController extends Controller
      */
     public function index()
     {
-        $dataset = Dosen::orderBy('id','desc')->get();
+        // $dataset = $this->getData();
+        // $ternomalisasi = $this->getTernomalisasi($dataset);
+        // $ternomalisasiXbobot = $this->getTernomalisasiXbobot($ternomalisasi);
+
+        $data['dosens'] = $this->getData();
+        $data['ternomalisasi'] = $this->getTernomalisasi($this->getData());
+        $data['ternomalisasiXbobot'] = $this->getTernomalisasiXbobot($this->getTernomalisasi($this->getData()));
+
+        return view('perhitungan.index', $data);
+    }
+
+    public function getData()
+    {
+        return Dosen::orderBy('id','desc')->get();
+    }
+
+    public function getTernomalisasi($data)
+    {
+        $ternomalisasi = [];
 
         //TODO  Temp min/max column
         $column = array(0,0,0,0,0);
 
-        foreach ($dataset as $dosen ) {
+        foreach ($data as $dosen ) {
             //TODO  C! Benefit ambil angka tertinggi
             $column[0] = $column[0] < $dosen->c1 ? $dosen->c1: $column[0] ;
             //TODO  C2 Benefit ambil angka tertinggi
@@ -32,9 +50,7 @@ class PerhitunganController extends Controller
             $column[4] = $column[4] < $dosen->c5 ? $dosen->c5: $column[4] ;
         }
 
-        $ternomalisasi = [];
-
-        foreach ($dataset as $dosen ) {
+        foreach ($data as $dosen ) {
             $dosen->c1 = $dosen->c1 / $column[0];
             $dosen->c2 = $dosen->c2 / $column[1];
             $dosen->c3 = $dosen->c3 / $column[2];
@@ -43,6 +59,11 @@ class PerhitunganController extends Controller
             array_push($ternomalisasi,$dosen);
         }
 
+        return $ternomalisasi;
+    }
+
+    public function getTernomalisasiXbobot($ternomalisasi)
+    {
         // Temp
         $bobot = array(0.3,0.4,0.15,0.10,0.5);
         $ternomalisasiXbobot = [];
@@ -54,20 +75,12 @@ class PerhitunganController extends Controller
             $dosen->c4 = $dosen->c4 * $bobot[3];
             $dosen->c5 = $dosen->c5 * $bobot[4];
             $dosen->jumlah = $dosen->c1 + $dosen->c2+$dosen->c3+$dosen->c4+ $dosen->c5 * $bobot[4];
-            // echo($dosen->nama);
-            // echo('<br>');
-            // echo($dosen->jumlah);
-            // echo('<br>');
             array_push($ternomalisasiXbobot,$dosen);
         }
 
         array_multisort($ternomalisasiXbobot, SORT_ASC);
 
-        $data['dosens'] = Dosen::orderBy('id','desc')->get();
-        $data['ternomalisasi'] = $ternomalisasi;
-        $data['ternomalisasiXbobot'] = $ternomalisasiXbobot;
-
-        return view('perhitungan.index', $data);
+        return $ternomalisasiXbobot;
     }
 
     /**
