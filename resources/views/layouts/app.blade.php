@@ -50,20 +50,18 @@
         </header>
         <aside class="main-sidebar">
             <section class="sidebar">
-
                 <ul class="sidebar-menu" data-widget="tree">
-                    {{-- <li class="header">MAIN NAVIGATION</li> --}}
-                    <li class="active">
+                    <li class="{{ request()->is('rangking') ? 'active' : '' }}">
                         <a href={{ route('rangking.index') }}>
                             </i> <span>Rangking</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li class="{{ request()->is('perhitungan') ? 'active' : '' }}">
                         <a href={{ route('perhitungan.index') }}>
                             </i> <span>Perhitungan</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li class="{{ request()->is('dosen') ? 'active' : '' }}">
                         <a href="{{ route('dosen.index') }}">
                             </i> <span>Data Dosen</span>
                         </a>

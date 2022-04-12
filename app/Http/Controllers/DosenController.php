@@ -14,7 +14,103 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $data['dosens'] = Dosen::orderBy('id','desc')->get();
+        $data['dosens']= [];
+        $dataset = Dosen::orderBy('id','desc')->get();
+
+       foreach ($dataset as $key => $e) {
+            switch ($e->c1) {
+                case 1:
+                    $e->c1 = '<55(SK)';
+                    break;
+                case 2:
+                    $e->c1 = '55-65(K)';
+                    break;
+                case 3:
+                    $e->c1 = '66-75(C)';
+                    break;
+                case 4:
+                    $e->c1 = '76-90(B)';
+                    break;
+                case 5:
+                    $e->c1 = '>90(SB)';
+                    break;
+                }
+
+            switch ($e->c2) {
+                case 1:
+                    $e->c2 = '<25(SK)';
+                    break;
+                case 2:
+                    $e->c2 = '>25-28,9(K)';
+                    break;
+                case 3:
+                    $e->c2 = '29-33,9(C)';
+                    break;
+                case 4:
+                    $e->c2 = '34-37(B)';
+                    break;
+                case 5:
+                    $e->c2 = '>37(SB)';
+                    break;
+                }
+
+            switch ($e->c3) {
+                case 1:
+                    $e->c3 = '0-55(SK)';
+                    break;
+                case 2:
+                    $e->c3 = '56-65(K)';
+                    break;
+                case 3:
+                    $e->c3 = '66-75(C)';
+                    break;
+                case 4:
+                    $e->c3 = '76-90(B)';
+                    break;
+                case 5:
+                    $e->c3 = '91-100(SB)';
+                    break;
+                }
+
+            switch ($e->c4) {
+                case 1:
+                    $e->c4 = '0-55(SK)';
+                    break;
+                case 2:
+                    $e->c4 = '56-65(K)';
+                    break;
+                case 3:
+                    $e->c4 = '66-75(C)';
+                    break;
+                case 4:
+                    $e->c4 = '76-90(B)';
+                    break;
+                case 5:
+                    $e->c4 = '91-100(SB)';
+                    break;
+                }
+
+            switch ($e->c5) {
+                case 1:
+                    $e->c5 = '0(SK)';
+                    break;
+                case 2:
+                    $e->c5 = '1(K)';
+                    break;
+                case 3:
+                    $e->c5 = '2(C)';
+                    break;
+                case 4:
+                    $e->c5 = '3(B)';
+                    break;
+                case 5:
+                    $e->c5 = '>4(SB)';
+                    break;
+                }
+
+            array_push($data['dosens'],$e);
+        }
+
         return view('dosen.index', $data);
     }
 
