@@ -48,7 +48,7 @@
         </div>
 
         <div class="box-body">
-            <table id="tabel" class="table table-bordered table-hover">
+            <table id="tabel1" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="box-body">
-            <table id="tabel" class="table table-bordered table-hover">
+            <table id="tabel2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>No</th>

@@ -132,6 +132,29 @@
                 'autoWidth': false
             })
         })
+
+        $(function() {
+            $('#tabel1').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+
+
+        $(function() {
+            $('#tabel2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
     </script>
 </body>
 

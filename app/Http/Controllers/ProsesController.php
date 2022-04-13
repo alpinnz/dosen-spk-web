@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bobot;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,19 @@ class ProsesController extends Controller
     {
         $data['dosens'] = $this->getTernomalisasiXbobot($this->getTernomalisasi($this->getData()));
         return view('rangking.index', $data);
+    }
+
+    public function getBobot()
+    {
+        $data = Bobot::orderBy('id','asc')->get();
+        $bobots = [];
+
+        foreach ($data as $key => $e) {
+            array_push($bobots, $e -> bobot);
+        }
+
+        return $bobots;
+
     }
 
     public function getData()
@@ -67,7 +81,7 @@ class ProsesController extends Controller
     public function getTernomalisasiXbobot($ternomalisasi)
     {
         // Temp
-        $bobot = array(0.3,0.4,0.15,0.10,0.5);
+        $bobot = $this -> getBobot();
         $ternomalisasiXbobot = [];
 
         foreach ($ternomalisasi as $dosen ) {

@@ -41,6 +41,7 @@ class BobotController extends Controller
                     $e->kriteria = 'C5 Kriteria Keaktifan penelitian';
                     break;
                 }
+
             $e->bobot = $e->bobot * 100;
 
             array_push($data['bobots'],$e);
