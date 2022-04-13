@@ -17,7 +17,7 @@ class DosenController extends Controller
         $data['dosens']= [];
         $dataset = Dosen::orderBy('id','desc')->get();
 
-       foreach ($dataset as $key => $e) {
+        foreach ($dataset as $key => $e) {
             switch ($e->c1) {
                 case 1:
                     $e->c1 = '<55(SK)';

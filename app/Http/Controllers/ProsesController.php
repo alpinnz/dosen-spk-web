@@ -5,24 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 
-class PerhitunganController extends Controller
+class ProsesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function perhitunganPage()
     {
-        // $dataset = $this->getData();
-        // $ternomalisasi = $this->getTernomalisasi($dataset);
-        // $ternomalisasiXbobot = $this->getTernomalisasiXbobot($ternomalisasi);
-
         $data['dosens'] = $this->getData();
         $data['ternomalisasi'] = $this->getTernomalisasi($this->getData());
         $data['ternomalisasiXbobot'] = $this->getTernomalisasiXbobot($this->getTernomalisasi($this->getData()));
 
         return view('perhitungan.index', $data);
+    }
+
+    public function RangkingPage()
+    {
+        $data['dosens'] = $this->getTernomalisasiXbobot($this->getTernomalisasi($this->getData()));
+        return view('rangking.index', $data);
     }
 
     public function getData()
@@ -81,71 +83,5 @@ class PerhitunganController extends Controller
         array_multisort($ternomalisasiXbobot, SORT_ASC);
 
         return $ternomalisasiXbobot;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

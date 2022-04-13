@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DosenController;
-use App\Http\Controllers\PerhitunganController;
-use App\Http\Controllers\RangkingController;
+use App\Http\Controllers\BobotController;
+use App\Http\Controllers\ProsesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +21,6 @@ Route::get('/', function () {
 });
 
 Route::resource('dosen', DosenController::class);
-Route::resource('/perhitungan', PerhitunganController::class);
-Route::resource('/rangking', RangkingController::class);
+Route::resource('perhitungan/bobot', BobotController::class);
+Route::get('perhitungan', [ProsesController::class, 'perhitunganPage']);
+Route::get('rangking', [ProsesController::class, 'RangkingPage']);
