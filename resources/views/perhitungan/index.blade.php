@@ -3,9 +3,12 @@
 @section('content-title', 'Perhitungan')
 @section('content-subtitle', '-')
 @section('content')
+    <div class="ml-auto">
+        <a class="btn btn-success" href="{{ route('bobot.index') }}"> Bobot</a>
+    </div>
     <div class="box mt-4">
         <div class="box-header">
-            <h3 class="box-title">Dataset</h3>
+            <h3 class="box-title">Dataset </h3>
         </div>
 
         <div class="box-body">

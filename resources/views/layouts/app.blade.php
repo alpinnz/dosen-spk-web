@@ -52,12 +52,12 @@
             <section class="sidebar">
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="{{ request()->is('rangking') ? 'active' : '' }}">
-                        <a href={{ route('rangking') }}>
+                        <a href="/rangking">
                             </i> <span>Rangking</span>
                         </a>
                     </li>
                     <li class="{{ request()->is('perhitungan') ? 'active' : '' }}">
-                        <a href={{ route('perhitungan') }}>
+                        <a href="/perhitungan">
                             </i> <span>Perhitungan</span>
                         </a>
                     </li>

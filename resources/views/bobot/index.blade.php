@@ -23,18 +23,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($dosens as $key => $dosen)
+                    @foreach ($bobots as $key => $e)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $dosen->kriteria }}</td>
-                            <td>{{ $dosen->bobot }}</td>
+                            <td>{{ $e->kriteria }}</td>
+                            <td>{{ $e->bobot }}%</td>
                             <td>
-                                <form action="{{ route('dosen.destroy', $dosen->id) }}" method="Post">
-                                    <a class="btn btn-primary" href="{{ route('dosen.edit', $dosen->id) }}">Edit</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                                <a class="btn btn-primary" href="{{ route('bobot.edit', $e->id) }}">Edit</a>
+                                @csrf
+
                             </td>
                         </tr>
                     @endforeach

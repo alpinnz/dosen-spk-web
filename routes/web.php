@@ -21,6 +21,6 @@ Route::get('/', function () {
 });
 
 Route::resource('dosen', DosenController::class);
-Route::resource('perhitungan/bobot', BobotController::class);
+Route::resource('bobot', BobotController::class);
 Route::get('perhitungan', [ProsesController::class, 'perhitunganPage']);
 Route::get('rangking', [ProsesController::class, 'RangkingPage']);
