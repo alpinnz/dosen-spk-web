@@ -21,8 +21,9 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
-                    <strong>Bobot: tersedia {{ $use }}% </strong>
-                    <input type="number" min="0" max="100" name="bobot" value="{{ $bobot->bobot }}" class="form-control">
+                    <strong>Bobot: tersedia bobot {{ $max }} %</strong>
+                    <input type="number" min="0" max="{{ $max }}" name="bobot" value="{{ $bobot->bobot }}"
+                        class="form-control">
                     @error('bobot')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror

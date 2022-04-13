@@ -104,6 +104,15 @@ class BobotController extends Controller
      */
     public function edit(Bobot $bobot)
     {
+        $bobots = Bobot::orderBy('id','asc')->get();
+
+        $max = 100;
+        foreach ($bobots as $key => $e) {
+            if($e -> id != $bobot->id){
+                $max -= $e -> bobot * 100;
+            }
+        }
+
         switch ($bobot->id) {
             case 1:
                 $bobot->kriteria = 'C1 Kriteria Kehadiran';
@@ -123,19 +132,7 @@ class BobotController extends Controller
             }
         $bobot->bobot = $bobot->bobot * 100;
 
-        $bobots = Bobot::orderBy('id','asc')->get();
-
-        $use = 0;
-
-        foreach ($bobots as $key => $e) {
-            if($e -> id != $bobot -> id){
-                $use += ($e -> bobot)*100;
-            }
-        }
-        $max = 100 - $use;
-
         $data['bobot'] = $bobot;
-        $data['use'] = $use;
         $data['max'] = $max;
 
         return view('bobot.edit', $data);
@@ -152,16 +149,15 @@ class BobotController extends Controller
     {
         $bobots = Bobot::orderBy('id','asc')->get();
 
-        $use = 0;
+        $max = 100;
         foreach ($bobots as $key => $e) {
             if($e -> id != $id){
-                $use += ($e -> bobot)*100;
+                $max -= $e -> bobot * 100;
             }
         }
-        $max = 100 - $use;
 
         $request->validate([
-            'bobot' => ['required', 'integer', 'max:'.$max],
+            'bobot' => ['required', 'integer','min:0', 'max:'.$max],
         ]);
 
         $bobot = Bobot::find($id);
