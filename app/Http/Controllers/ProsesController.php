@@ -90,11 +90,13 @@ class ProsesController extends Controller
             $dosen->c3 = $dosen->c3 * $bobot[2];
             $dosen->c4 = $dosen->c4 * $bobot[3];
             $dosen->c5 = $dosen->c5 * $bobot[4];
-            $dosen->jumlah = $dosen->c1 + $dosen->c2+$dosen->c3+$dosen->c4+ $dosen->c5 * $bobot[4];
+            $dosen->jumlah = $dosen->c1 + $dosen->c2+$dosen->c3+$dosen->c4+ $dosen->c5;
             array_push($ternomalisasiXbobot,$dosen);
         }
 
-        array_multisort($ternomalisasiXbobot, SORT_ASC);
+        usort($ternomalisasiXbobot,function($a,$b){
+            return $b->jumlah <=> $a->jumlah;
+        });
 
         return $ternomalisasiXbobot;
     }
